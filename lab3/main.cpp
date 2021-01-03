@@ -12,31 +12,29 @@ void checkFork(char *fileName) {
     pid_t pid = fork();
     if (pid == 0) {
         //процесс потомка
-        sleep(5);
+        sleep(2);
         logs << "Потомок 1: ";
-	  	  logs << "Индификатор процесса= "<<getpid()<<endl;
-	  	  logs << "Индификатор предка= "<< getppid()<<endl;
-	  	  logs << "Индификатор сессии процесса= "<<getsid(pid)<<endl;
-	  	  logs << "Индификатор группы процессов= "<<getpgid(pid)<<endl;
-	  	  logs << "Реальный индификатор пользователя= "<<getuid()<<endl;
-	  	  logs << "Эффективный индификатор пользователя= "<<geteuid()<<endl;
-	  	  logs << "Реальный групповой индификатор= "<<getgid()<<endl;
-	  	  logs << "Эффективный групповой индификатор= "<<getegid()<<endl<<endl;
-            execl("Done"," ",fileName, NULL);
-            exit(rv);
+        logs << "Индификатор процесса= "<<getpid()<<endl;
+        logs << "Индификатор предка= "<< getppid()<<endl;
+        logs << "Индификатор сессии процесса= "<<getsid(pid)<<endl;
+        logs << "Индификатор группы процессов= "<<getpgid(pid)<<endl;
+        logs << "Реальный индификатор пользователя= "<<getuid()<<endl;
+        logs << "Эффективный индификатор пользователя= "<<geteuid()<<endl;
+        logs << "Реальный групповой индификатор= "<<getgid()<<endl;
+        logs << "Эффективный групповой индификатор= "<<getegid()<<endl<<endl;
+        exit(rv);
 
     } else if (pid > 0){
         // процессы предка
         logs << "Предок: ";
-	      logs << "Индификатор процесса= "<<getpid()<<endl;
-	      logs << "Индификатор предка= "<< getppid()<<endl;
-	      logs << "Индификатор сессии процесса= "<<getsid(pid)<<endl;
-	      logs << "Индификатор группы процессов= "<<getpgid(pid)<<endl;
-	      logs << "Реальный индификатор пользователя= "<<getuid()<<endl;
-	      logs << "Эффективный индификатор пользователя= "<<geteuid()<<endl;
-	      logs << "Реальный групповой индификатор= "<<getgid()<<endl;
-	      logs << "Эффективный групповой индификатор= "<<getegid()<<endl<<endl;
-          execl("Done"," ",fileName, NULL);
+        logs << "Индификатор процесса= "<<getpid()<<endl;
+        logs << "Индификатор предка= "<< getppid()<<endl;
+        logs << "Индификатор сессии процесса= "<<getsid(pid)<<endl;
+        logs << "Индификатор группы процессов= "<<getpgid(pid)<<endl;
+        logs << "Реальный индификатор пользователя= "<<getuid()<<endl;
+        logs << "Эффективный индификатор пользователя= "<<geteuid()<<endl;
+        logs << "Реальный групповой индификатор= "<<getgid()<<endl;
+        logs << "Эффективный групповой индификатор= "<<getegid()<<endl<<endl;
     } else {
         // ошибка fork
         // выход из родительского процесса
@@ -48,32 +46,31 @@ void checkFork(char *fileName) {
 void checkVfork(char *fileName) {
     pid_t pid = vfork();
     if (pid == 0) {
-        sleep(10);
+        sleep(4);
         logs << "Потомок 2: ";
-	  	  logs << "Индификатор процесса= "<<getpid()<<endl;
-	  	  logs << "Индификатор предка= "<< getppid()<<endl;
-	  	  logs << "Индификатор сессии процесса= "<<getsid(pid)<<endl;
-	  	  logs << "Индификатор группы процессов= "<<getpgid(pid)<<endl;
-	  	  logs << "Реальный индификатор пользователя= "<<getuid()<<endl;
-	  	  logs << "Эффективный индификатор пользователя= "<<geteuid()<<endl;
-	  	  logs << "Реальный групповой индификатор= "<<getgid()<<endl;
-	  	  logs << "Эффективный групповой индификатор= "<<getegid()<<endl<<endl;
-	  	  execl("Done"," ",fileName, NULL);
-            exit(rv);
+        logs << "Индификатор процесса= "<<getpid()<<endl;
+        logs << "Индификатор предка= "<< getppid()<<endl;
+        logs << "Индификатор сессии процесса= "<<getsid(pid)<<endl;
+        logs << "Индификатор группы процессов= "<<getpgid(pid)<<endl;
+        logs << "Реальный индификатор пользователя= "<<getuid()<<endl;
+        logs << "Эффективный индификатор пользователя= "<<geteuid()<<endl;
+        logs << "Реальный групповой индификатор= "<<getgid()<<endl;
+        logs << "Эффективный групповой индификатор= "<<getegid()<<endl<<endl;
+        execl("Done"," ",fileName, NULL);
+        exit(rv);
     } else if (pid > 0){
-
         // процессы предка
-        logs << "Предок: ";
-	      logs << "Индификатор процесса= "<<getpid()<<endl;
-	      logs << "Индификатор предка= "<< getppid()<<endl;
-	      logs << "Индификатор сессии процесса= "<<getsid(pid)<<endl;
-	      logs << "Индификатор группы процессов= "<<getpgid(pid)<<endl;
-	      logs << "Реальный индификатор пользователя= "<<getuid()<<endl;
-	      logs << "Эффективный индификатор пользователя= "<<geteuid()<<endl;
-	      logs << "Реальный групповой индификатор= "<<getgid()<<endl;
-	      logs << "Эффективный групповой индификатор= "<<getegid()<<endl<<endl;
-          execl("Done"," ",fileName, NULL);
-        
+        // проверяем, что родительский процесс блокируется
+        logs << "Предок 2: ";
+        logs << "Индификатор процесса= "<<getpid()<<endl;
+        logs << "Индификатор предка= "<< getppid()<<endl;
+        logs << "Индификатор сессии процесса= "<<getsid(pid)<<endl;
+        logs << "Индификатор группы процессов= "<<getpgid(pid)<<endl;
+        logs << "Реальный индификатор пользователя= "<<getuid()<<endl;
+        logs << "Эффективный индификатор пользователя= "<<geteuid()<<endl;
+        logs << "Реальный групповой индификатор= "<<getgid()<<endl;
+        logs << "Эффективный групповой индификатор= "<<getegid()<<endl<<endl;
+        execl("Done"," ",fileName, NULL);
     } else {
         // ошибка fork
         // выход из родительского процесса
