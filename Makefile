@@ -9,7 +9,7 @@ all: ubuntu/stop ubuntu/build ubuntu/start
 
 build/%:
 	@mkdir -p $*/bin
-	@g++ -o $*/bin/$* $*/main.cpp
+	@g++ -pthread -o $*/bin/$* $*/main.cpp
 
 .PHONY: run ##  PHONY Don't make a file 
 
