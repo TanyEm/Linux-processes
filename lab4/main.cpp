@@ -2,43 +2,70 @@
 #include <fstream>
 #include <unistd.h>
 #include <thread>
-// #include <paths.h>
 
 using namespace std;
 
-ifstream logs;
+// / Создаем поток для работы с файлом как объект ifstream для ввода (чтения) данных из файла
+	ifstream logs;
 
-void task1(ifstream *logs) {
-	string line;
-	if (logs->is_open()) cout << "файл открыт" << endl;
-	char str[80];
-	cout << str << endl;
-	getline(*logs, line);
-    std::cout << "Файл содержит " << line <<endl;
+void threadFunc(ifstream *logs) {
+	string printFile;
+
+	if (logs->is_open()){
+		cout << "Файл открыт" << endl;
+	} else {
+		cout << "Файл не открыт" << endl;
+	}
+	
+	//Печатаем все из файла
+    std::cout << "В файле: " <<endl;
+	while (getline(*logs, printFile))
+	{
+		cout << printFile << endl;
+	}
+
 	int sched_setscheduler();
-	cout << "Класс планирования" << sched_setscheduler << endl;
-	logs->close();
+	cout << "Класс планирования: " << sched_setscheduler << endl;
+
+	//logs->close();
 }
 
 
 int main() {
-	//std::thread* thr;
-	
-  	logs.open("log.txt");
-  	std::thread t1(task1, &logs);
-    cout << "Управление потоками" << endl;
+	ofstream myfile;
+	myfile.open ("logs.txt");
+    myfile << "В этом файле привет миру :)\n";
+	myfile << "Пишу сюда что-нибудь чтобы проверить работу программы\n";
+	myfile << "Еще что-то\n";
+	myfile << "И еще\n";
+	myfile << "И еще\n";
+	myfile << "Наверное хватит\n";
+    myfile.close();
+
+	cout << "Управление потоками" << endl;
     cout << "Подлесных Т.П" << endl;
+	// Открывам файл
+  	logs.open("logs.txt");
+	// Создаем поток по идентификатору thread и функции потока threadFunc 
+	// и передаем потоку указатель на файл
+  	
+	  
+	  std::thread t1(threadFunc, &logs);
+	int pthread_getschedparam(pthread_t thread, int *policy,  
+ 			   struct sched_param *param);
 
 	
-	
+	// Ждем завершения потока
   	t1.join();
+	// Устанавливаем планировщик. получает алгоритм диспетчеризации процесса с номером pid. 
+	// Если pid равен нулю, то возвращается алгоритм планирования вызывающего процесса (код планирования).
 	int sched_setscheduler();
-	cout << "Класс планирования" << sched_setscheduler;
+	cout << "Класс планирования: " << sched_setscheduler << pthread_getschedparam << endl;
 
 	// принудительное закрытие, если файл все еще открыт
 	if (logs.is_open()){
-		//logs << "Logs:";
-		cout << "Файл открыт" << endl;
+		cout << "Файл открыт1" << endl;
+		cout << "теперь закрыть" << endl;
 		logs.close();
 	}
 
