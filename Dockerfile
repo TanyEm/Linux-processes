@@ -23,7 +23,9 @@ RUN apt-get update \
       && apt-get install -y apt-utils \
       # set up build env
       && apt-get install -y g++ \
-      && apt-get install -y build-essential      
+      && apt-get install -y build-essential \
+      && apt-get install cron \
+      && apt-get install nano
 
 # set locales
 RUN apt-get update && apt-get install -y locales \ 
@@ -43,4 +45,4 @@ COPY . ./
 
 RUN chown -R tanya:tanya ./
 
-USER tanya
+#USER tanya

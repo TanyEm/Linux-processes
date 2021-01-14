@@ -27,7 +27,7 @@ void threadFunc(ifstream *logs) {
 	int sched_setscheduler();
 	cout << "Класс планирования: " << sched_setscheduler << endl;
 
-	//logs->close();
+	// logs->close();
 }
 
 
@@ -51,8 +51,7 @@ int main() {
   	
 	  
 	  std::thread t1(threadFunc, &logs);
-	int pthread_getschedparam(pthread_t thread, int *policy,  
- 			   struct sched_param *param);
+	int pthread_getschedparam(pthread_t thread, int *policy, struct sched_param *param);
 
 	
 	// Ждем завершения потока
@@ -60,11 +59,11 @@ int main() {
 	// Устанавливаем планировщик. получает алгоритм диспетчеризации процесса с номером pid. 
 	// Если pid равен нулю, то возвращается алгоритм планирования вызывающего процесса (код планирования).
 	int sched_setscheduler();
-	cout << "Класс планирования: " << sched_setscheduler << pthread_getschedparam << endl;
+	cout << "Класс планирования: " << sched_setscheduler <<  endl;
 
 	// принудительное закрытие, если файл все еще открыт
 	if (logs.is_open()){
-		cout << "Файл открыт1" << endl;
+		cout << "Файл все еще открыт" << endl;
 		cout << "теперь закрыть" << endl;
 		logs.close();
 	}
