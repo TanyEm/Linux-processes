@@ -45,4 +45,4 @@ COPY . ./
 
 RUN chown -R tanya:tanya ./
 
-#USER tanya
+USER tanya

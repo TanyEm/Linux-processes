@@ -27,7 +27,7 @@ void threadFunc(ifstream *logs) {
 	int sched_setscheduler();
 	cout << "Класс планирования: " << sched_setscheduler << endl;
 
-	// logs->close();
+	logs->close();
 }
 
 
